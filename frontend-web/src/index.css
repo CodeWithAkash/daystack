@@ -1,0 +1,13 @@
+body{
+background:linear-gradient(140deg,#522959,#2A114B,#180018);
+color:white;
+font-family:Inter;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+border-radius:22px;
+padding:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
