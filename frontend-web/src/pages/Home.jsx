@@ -2,10 +2,10 @@ import Navbar from "../components/Navbar"
 import QuoteCard from "../components/QuoteCard"
 import StreakCard from "../components/StreakCard"
 import TaskList from "../components/TaskList"
-import Pomodoro from "../components/Pomodoro"
 import Heatmap from "../components/Heatmap"
 import Analytics from "../components/Analytics"
 import AIAdvice from "../components/AIAdvice"
+import HabitGrid from "../components/HabitGrid"
 
 export default function Home(){
 
@@ -29,6 +29,12 @@ marginTop:"20px"
 
 <div style={{marginTop:"20px"}}>
 
+<HabitGrid/>
+
+</div>
+
+<div style={{marginTop:"20px"}}>
+
 <TaskList/>
 
 </div>
@@ -40,14 +46,8 @@ gap:"20px",
 marginTop:"20px"
 }}>
 
-<Pomodoro/>
-<AIAdvice advice="Maintain at least 7 completed tasks daily."/>
-
-</div>
-
-<div style={{marginTop:"20px"}}>
-
 <Analytics/>
+<AIAdvice advice="Consistency builds powerful habits."/>
 
 </div>
 

@@ -1,12 +1,51 @@
 body{
+font-family:"Poppins",sans-serif;
 background:linear-gradient(140deg,#522959,#2A114B,#180018);
 color:white;
-font-family:"Inter",sans-serif;}
+}
 
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(18px);
 border-radius:22px;
-padding:20px;
-box-shadow:0 10px 40px rgba(0,0,0,0.5);
+padding:24px;
+box-shadow:0 25px 60px rgba(0,0,0,0.45);
+}
+
+.habit-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:25px;
+margin-top:20px;
+
+}
+
+.habit-card{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:18px;
+border-radius:20px;
+background:#2A114B;
+box-shadow:0 12px 30px rgba(0,0,0,0.4);
+transition:0.3s;
+
+}
+
+.progress-wrapper{
+
+width:100px;
+height:100px;
+
+}
+
+.habit-label{
+
+margin-top:10px;
+font-size:14px;
+text-align:center;
+color:#DFB6B2;
+
 }
