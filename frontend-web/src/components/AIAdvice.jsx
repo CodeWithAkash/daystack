@@ -4,7 +4,7 @@ return(
 
 <div className="card">
 
-<h3>AI Coach</h3>
+<h3>Sir AI</h3>
 
 <p>{advice}</p>
 
