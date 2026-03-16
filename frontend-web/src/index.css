@@ -1,8 +1,7 @@
 body{
 background:linear-gradient(140deg,#522959,#2A114B,#180018);
 color:white;
-font-family:Inter;
-}
+font-family:"Inter",sans-serif;}
 
 .card{
 background:rgba(255,255,255,0.08);

@@ -1,35 +1,37 @@
-from flask import Blueprint,jsonify,request
+from flask import Blueprint,request,jsonify
 from datetime import datetime
 from config import stats_collection
-from streak import calculate_streak
-from ai_coach import generate_advice
 
-stats_bp=Blueprint("stats",__name__)
+stats_bp = Blueprint("stats",__name__)
 
-@stats_bp.route("/save",methods=["POST"])
-def save():
+@stats_bp.route("/save-day",methods=["POST"])
+def save_day():
 
-    data=request.json
-    user=data["user"]
-    tasks=data["tasks"]
+    data = request.json
 
-    today=datetime.now().date()
+    record = {
+        "user": data["user"],
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "completed": data["tasks"],
+        "score": len(data["tasks"])
+    }
 
-    stats_collection.insert_one({
-        "user":user,
-        "count":len(tasks),
-        "date":today
-    })
+    stats_collection.insert_one(record)
 
-    advice=generate_advice(len(tasks))
+    return jsonify({"status":"saved"})
 
-    return jsonify({
-        "status":"saved",
-        "advice":advice
-    })
 
-@stats_bp.route("/streak/<user>")
-def streak(user):
+@stats_bp.route("/analytics/<user>")
+def analytics(user):
 
-    s=calculate_streak(user)
-    return jsonify({"streak":s})
+    records = list(stats_collection.find({"user":user}))
+
+    history = []
+
+    for r in records:
+        history.append({
+            "date": r["date"],
+            "score": r["score"]
+        })
+
+    return jsonify({"history":history})
