@@ -46,12 +46,12 @@ const HABIT_COLORS = [
 ]
 
 export default function Analytics() {
-  const [weekly, setWeekly]   = useState(null)
+  const [weekly, setWeekly]     = useState(null)
   const [perHabit, setPerHabit] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading]   = useState(true)
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchData = async () => {
       try {
         const [wRes, phRes] = await Promise.all([
           api.get("/api/stats/weekly"),
@@ -65,7 +65,7 @@ export default function Analytics() {
         setLoading(false)
       }
     }
-    fetch()
+    fetchData()
   }, [])
 
   if (loading) return (
@@ -80,10 +80,9 @@ export default function Analytics() {
     labels: weekly.map(d => d.day),
     datasets: [{
       data: weekly.map(d => d.completed),
-      backgroundColor: weekly.map((d, i) => {
-        const today = new Date().getDay()
+      backgroundColor: weekly.map((d) => {
         const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-        return days[today] === d.day ? "#7B5CF0" : "rgba(123,92,240,0.3)"
+        return days[new Date().getDay()] === d.day ? "#7B5CF0" : "rgba(123,92,240,0.3)"
       }),
       borderRadius: 8,
       borderSkipped: false,
@@ -123,82 +122,48 @@ export default function Analytics() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-      {/* Summary stats row */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
         {[
           { label: "Total completions", value: totalCompleted, icon: "✅", color: "#22C55E" },
-          { label: "Avg completion", value: `${avgPct}%`, icon: "📊", color: "#7B5CF0" },
-          { label: "Habits tracked", value: perHabit?.length || 0, icon: "🎯", color: "#F97316" },
+          { label: "Avg completion",    value: `${avgPct}%`,   icon: "📊", color: "#7B5CF0" },
+          { label: "Habits tracked",   value: perHabit?.length || 0, icon: "🎯", color: "#F97316" },
         ].map((s, i) => (
-          <div key={i} className="glass-card animate-fade-in" style={{
-            padding: "20px 18px",
-            textAlign: "center",
-            animationDelay: `${i * 80}ms`,
-          }}>
+          <div key={i} className="glass-card animate-fade-in" style={{ padding: "20px 18px", textAlign: "center", animationDelay: `${i * 80}ms` }}>
             <div style={{ fontSize: 28, marginBottom: 8 }}>{s.icon}</div>
-            <div style={{
-              fontSize: 28, fontWeight: 800,
-              color: s.color,
-              marginBottom: 4,
-              fontFamily: "var(--font-display)",
-            }}>{s.value}</div>
+            <div style={{ fontSize: 28, fontWeight: 800, color: s.color, marginBottom: 4 }}>{s.value}</div>
             <div style={{ fontSize: 11, color: "var(--text-muted)", fontWeight: 600 }}>{s.label}</div>
           </div>
         ))}
       </div>
 
-      {/* Weekly bar chart */}
       <div className="glass-card animate-fade-in" style={{ padding: 28 }}>
         <div style={{ marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "var(--accent-blue)", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 4 }}>📅 This Week</div>
           <div style={{ fontSize: 20, fontWeight: 800 }}>Daily Completions</div>
         </div>
         {weeklyBarData && (
-          <Bar
-            data={weeklyBarData}
-            options={{
-              ...chartDefaults,
-              responsive: true,
-              maintainAspectRatio: true,
-              animation: { duration: 800, easing: "easeOutQuart" },
-              scales: {
-                ...chartDefaults.scales,
-                y: {
-                  ...chartDefaults.scales.y,
-                  max: 8,
-                  ticks: { ...chartDefaults.scales.y.ticks, stepSize: 2 },
-                },
-              },
-            }}
-            height={120}
-          />
+          <Bar data={weeklyBarData} options={{
+            ...chartDefaults, responsive: true, maintainAspectRatio: true,
+            animation: { duration: 800, easing: "easeOutQuart" },
+            scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, max: 8, ticks: { ...chartDefaults.scales.y.ticks, stepSize: 2 } } },
+          }} height={120} />
         )}
       </div>
 
-      {/* Per-habit line chart */}
       <div className="glass-card animate-fade-in" style={{ padding: 28 }}>
         <div style={{ marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "var(--accent-teal)", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 4 }}>📈 30-Day View</div>
           <div style={{ fontSize: 20, fontWeight: 800 }}>Habit Completion Rate</div>
         </div>
         {habitLineData && (
-          <Line
-            data={habitLineData}
-            options={{
-              ...chartDefaults,
-              responsive: true,
-              animation: { duration: 1000, easing: "easeOutQuart" },
-              scales: {
-                ...chartDefaults.scales,
-                y: { ...chartDefaults.scales.y, max: 100, ticks: { ...chartDefaults.scales.y.ticks, callback: v => `${v}%` } },
-              },
-            }}
-            height={110}
-          />
+          <Line data={habitLineData} options={{
+            ...chartDefaults, responsive: true,
+            animation: { duration: 1000, easing: "easeOutQuart" },
+            scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, max: 100, ticks: { ...chartDefaults.scales.y.ticks, callback: v => `${v}%` } } },
+          }} height={110} />
         )}
       </div>
 
-      {/* Doughnut + per-habit list */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
         <div className="glass-card animate-fade-in" style={{ padding: 28 }}>
           <div style={{ marginBottom: 16 }}>
@@ -206,18 +171,11 @@ export default function Analytics() {
             <div style={{ fontSize: 18, fontWeight: 800 }}>30-Day Split</div>
           </div>
           {doughnutData && (
-            <Doughnut
-              data={doughnutData}
-              options={{
-                responsive: true,
-                animation: { duration: 1000 },
-                plugins: {
-                  legend: { display: false },
-                  tooltip: chartDefaults.plugins.tooltip,
-                },
-                cutout: "65%",
-              }}
-            />
+            <Doughnut data={doughnutData} options={{
+              responsive: true, animation: { duration: 1000 },
+              plugins: { legend: { display: false }, tooltip: chartDefaults.plugins.tooltip },
+              cutout: "65%",
+            }} />
           )}
         </div>
 
@@ -236,13 +194,7 @@ export default function Analytics() {
                     {h.label.split(" ").slice(0, 2).join(" ")}
                   </div>
                   <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
-                    <div style={{
-                      height: "100%",
-                      width: `${h.pct}%`,
-                      background: HABIT_COLORS[i % HABIT_COLORS.length],
-                      borderRadius: 2,
-                      transition: "width 1s ease",
-                    }} />
+                    <div style={{ height: "100%", width: `${h.pct}%`, background: HABIT_COLORS[i % HABIT_COLORS.length], borderRadius: 2, transition: "width 1s ease" }} />
                   </div>
                 </div>
                 <span style={{ fontSize: 12, fontWeight: 800, color: HABIT_COLORS[i % HABIT_COLORS.length], width: 36, textAlign: "right" }}>{h.pct}%</span>
