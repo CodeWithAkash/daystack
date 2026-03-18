@@ -9,6 +9,7 @@ HABITS = [
     {"id": "leetcode",          "label": "LeetCode",             "icon": "⚡", "category": "dev",       "color": "#FFA502"},
     {"id": "hackerrank",        "label": "HackerRank",           "icon": "🏆", "category": "dev",       "color": "#2ECC71"},
     {"id": "new_skills",        "label": "New Skills",           "icon": "🚀", "category": "learning",  "color": "#A29BFE"},
+    {"id": "painting",          "label": "Painting",             "icon": "🎨", "category": "creative",  "color": "#6D4697"}
 ]
 
 def make_daily_log(date_str=None):
