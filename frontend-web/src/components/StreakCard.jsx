@@ -10,6 +10,7 @@ const HABIT_META = {
   leetcode:        { icon: "⚡", color: "#FFA502" },
   hackerrank:      { icon: "🏆", color: "#2ECC71" },
   new_skills:      { icon: "🚀", color: "#A29BFE" },
+  painting:        { icon: "🎨", color: "#6D4697" },
 }
 
 function StreakBadge({ habit, streakData }) {
