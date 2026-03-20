@@ -9,8 +9,7 @@ HABITS = [
     {"id": "leetcode",          "label": "LeetCode",             "icon": "⚡", "category": "dev",       "color": "#FFA502"},
     {"id": "hackerrank",        "label": "HackerRank",           "icon": "🏆", "category": "dev",       "color": "#2ECC71"},
     {"id": "new_skills",        "label": "New Skills",           "icon": "🚀", "category": "learning",  "color": "#A29BFE"},
-    {"id": "painting",          "label": "Painting",             "icon": "🎨", "category": "creative",  "color": "#EAB308"},
-]
+    {"id": "painting",          "label": "Painting",             "icon": "🎨", "category": "wellness",  "color": "#EC4899"},]
 
 def make_daily_log(date_str=None):
     today = date_str or datetime.utcnow().strftime("%Y-%m-%d")

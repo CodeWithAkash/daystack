@@ -10,7 +10,7 @@ const HABIT_META = {
   leetcode:        { icon: "⚡", gradient: ["#FFA502","#FFDA79"], glow: "rgba(255,165,2,0.35)"   },
   hackerrank:      { icon: "🏆", gradient: ["#2ECC71","#A8E063"], glow: "rgba(46,204,113,0.35)"  },
   new_skills:      { icon: "🚀", gradient: ["#A29BFE","#DDD6FE"], glow: "rgba(162,155,254,0.35)" },
-  painting:        { icon: "🎨", gradient: ["#6D4697","#A29BFE"], glow: "rgba(109,70,151,0.35)" },
+  painting:        { icon: "🎨", gradient: ["#EC4899","#F9A8D4"], glow: "rgba(236,72,153,0.35)" },
 }
 
 export default function HabitCard({ habit, done, date, onToggle }) {
