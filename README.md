@@ -6,7 +6,7 @@ Live- https://day.akash-codes.space
 
 ## ✨ Features
 
-- **9 daily habits** with category grouping (Fitness, Dev, Wellness & Learning)
+- **Nine daily habits** with category grouping (Fitness, Dev, Wellness & Learning)
 - **Animated habit cards** — tap to toggle with satisfying micro-interactions
 - **Daily motivational quotes** — deterministic daily + random refresh
 - **GitHub-style heatmap** — 90-day activity visualization
