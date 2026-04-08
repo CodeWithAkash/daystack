@@ -7,18 +7,21 @@ from routes.stats import stats_bp
 from routes.heatmap import heatmap_bp
 
 app = Flask(__name__)
-CORS(app, origins="*")
+
+CORS(app, resources={r"/api/*": {"origins": [
+    "https://day.akash-codes.space",
+    "http://localhost:5173",
+    "http://localhost:3000",
+]}})
 
 app.register_blueprint(tasks_bp)
 app.register_blueprint(quotes_bp)
 app.register_blueprint(stats_bp)
 app.register_blueprint(heatmap_bp)
 
-
 @app.route("/health")
 def health():
     return {"status": "ok"}
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000, debug=False)
