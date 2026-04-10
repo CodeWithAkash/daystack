@@ -4,7 +4,7 @@ A beautifully designed personal daily habit tracker — iOS-inspired dark UI, an
 
 Live- https://day.akash-codes.space
 
-## ✨ Features
+##  Features ✨
 
 - **Nine daily habits** with category grouping (Fitness, Dev, Wellness & Learning)
 - **Animated habit cards** — tap to toggle with satisfying micro-interactions
