@@ -1,6 +1,6 @@
 #  DayStack ⚡
 
-A beautifully  designed personal daily habit tracker — iOS-inspired dark UI, animated, with real analytics.
+A beautifully designed personal daily habit tracker — iOS-inspired dark UI, animated, with real analytics.
 
 Live- https://day.akash-codes.space
 
