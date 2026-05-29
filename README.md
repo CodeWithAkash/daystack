@@ -86,7 +86,7 @@ npm install
 npm run dev
 ```
 
-## 🎨 Design System
+## 🎨Design System
 
 - **Font**: Plus Jakarta Sans (display)
 - **Theme**: Deep midnight `#0A0A0F` + vivid accent ramp
