@@ -1,11 +1,11 @@
-#  DayStack  ⚡
+#  DayStack ⚡
 A beautifully designed personal daily habit tracker — iOS-inspired dark UI, animated, with real analytics.
 
 Live - https://day.akash-codes.space
 
 ##  Features ✨
 
-- **Nine daily habits** with category grouping (Fitness, Dev, Wellness & Learning)
+- **9 daily habits** with category grouping (Fitness, Dev, Wellness & Learning)
 - **Animated habit cards** — tap to toggle with satisfying micro-interactions
 - **Daily motivational quotes** — deterministic daily + random refresh
 - **GitHub-style heatmap** — 90-day activity visualization.
